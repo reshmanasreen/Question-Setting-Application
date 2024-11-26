@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Setting Software</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Question Setting Software</h1>
+        <div>
+            <label for="profile">Profile Type:</label>
+            <select id="profile">
+                <option value="program1">Program 1</option>
+                <option value="program2">Program 2</option>
+            </select>
+        </div>
+        <div>
+            <h2>Task 1: Add Course</h2>
+            <form id="task1-form">
+                <input type="text" id="courseName" placeholder="Course Name" required>
+                <input type="text" id="courseCode" placeholder="Course Code" required>
+                <input type="number" id="credit" placeholder="Credits" required>
+                <button type="button" onclick="addCourse()">Submit</button>
+            </form>
+            <table id="courseTable">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Course Code</th>
+                        <th>Credits</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <script>
+        function addCourse() {
+            const name = document.getElementById("courseName").value;
+            const code = document.getElementById("courseCode").value;
+            const credits = document.getElementById("credit").value;
+            
+            const table = document.querySelector("#courseTable tbody");
+            const row = `<tr><td>${name}</td><td>${code}</td><td>${credits}</td></tr>`;
+            table.innerHTML += row;
+        
+            document.getElementById("task1-form").reset();
+        }
+        </script>
+        <div>
+            <h2>Task 2: Add Outcomes</h2>
+            <form id="task2-form">
+                <select id="courseDropdown">
+                    <!-- Courses populated dynamically -->
+                </select>
+                <input type="text" id="outcome" placeholder="Enter Outcome" required>
+                <button type="button" onclick="addOutcome()">Submit</button>
+            </form>
+            <table id="outcomeTable">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Outcome</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <script>
+        function addOutcome() {
+            const course = document.getElementById("courseDropdown").value;
+            const outcome = document.getElementById("outcome").value;
+        
+            const table = document.querySelector("#outcomeTable tbody");
+            const row = `<tr><td>${course}</td><td>${outcome}</td></tr>`;
+            table.innerHTML += row;
+        
+            document.getElementById("task2-form").reset();
+        }
+        </script>
+        
+    </header>
+    <div class="container">
+        <aside>
+            <button onclick="loadPage('Get Started')">Get Started</button>
+            <button onclick="loadPage('Curriculam Mapping')">Curriculam Mapping</button>
+            <button onclick="loadPage('Question Generation')">Question Generation</button>
+            <button onclick="loadPage('Report Generation')">Report Generation</button>
+           
+        </aside>
+        <main id="content-area">
+            <!-- Content will be loaded dynamically -->
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
